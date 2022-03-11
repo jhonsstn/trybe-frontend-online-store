@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Header from '../components/Header';
 import Categories from '../components/Categories';
 
 class Home extends Component {
@@ -8,7 +7,6 @@ class Home extends Component {
     const { categories } = this.props;
     return (
       <>
-        <Header />
         <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
