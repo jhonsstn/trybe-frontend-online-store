@@ -4,11 +4,15 @@ import Category from './Category';
 
 class Categories extends Component {
   render() {
-    const { categories } = this.props;
+    const { categories, handleClick } = this.props;
     return (
       <aside>
         {categories.map((category) => (
-          <Category key={ category.id } category={ category } />
+          <Category
+            handleClick={ handleClick }
+            key={ category.id }
+            category={ category }
+          />
         ))}
         ;
       </aside>
@@ -22,6 +26,7 @@ Categories.propTypes = {
       map: PropTypes.func,
     }),
   ).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Categories;

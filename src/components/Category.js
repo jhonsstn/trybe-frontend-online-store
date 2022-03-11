@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 class Category extends Component {
   render() {
-    const { category } = this.props;
+    const { category, handleClick } = this.props;
     return (
       <div>
         <label data-testid="category" htmlFor={ category.id }>
@@ -12,6 +12,7 @@ class Category extends Component {
             id={ category.id }
             name="categories"
             value={ category.id }
+            onClick={ handleClick }
           />
           {category.name}
         </label>
@@ -25,6 +26,7 @@ Category.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Category;
