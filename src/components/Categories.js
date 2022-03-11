@@ -5,16 +5,23 @@ import Category from './Category';
 class Categories extends Component {
   render() {
     const { categories } = this.props;
-    return categories.map((category) => (
-      <Category key={ category.id } category={ category } />
-    ));
+    return (
+      <aside>
+        {categories.map((category) => (
+          <Category key={ category.id } category={ category } />
+        ))}
+        ;
+      </aside>
+    );
   }
 }
 
 Categories.propTypes = {
-  categories: PropTypes.shape({
-    map: PropTypes.func,
-  }).isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      map: PropTypes.func,
+    }),
+  ).isRequired,
 };
 
 export default Categories;
