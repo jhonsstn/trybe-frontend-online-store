@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Header extends Component {
-  constructor() {
-    super();
-    this.state = {
-      clicked: false,
-    };
-  }
-
   handleClick = () => {
-    const { handleSearchClick } = this.props;
+    const { handleSearchClick, history } = this.props;
     handleSearchClick();
-    this.setState({
-      clicked: true,
-    });
+    history.push('/products');
   };
 
   render() {
     const { handleChange } = this.props;
-    const { clicked } = this.state;
     return (
       <>
         <input onChange={ handleChange } type="text" data-testid="query-input" />
@@ -35,7 +25,6 @@ class Header extends Component {
         <Link to="/cart" data-testid="shopping-cart-button">
           Carrinho
         </Link>
-        {clicked && <Redirect to="/products" />}
       </>
     );
   }
@@ -44,6 +33,9 @@ class Header extends Component {
 Header.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSearchClick: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default Header;

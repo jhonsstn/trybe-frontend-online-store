@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
-import { getCategories,
+import {
+  getCategories,
   getProductsFromCategory,
-  getProductsFromQuery } from './services/api';
+  getProductsFromQuery,
+} from './services/api';
 
 import './App.css';
-import Header from './components/Header';
 import Products from './pages/Products';
 
 class App extends Component {
@@ -34,7 +35,7 @@ class App extends Component {
     this.setState({
       productList,
     });
-  }
+  };
 
   handleChange = ({ target }) => {
     const { value } = target;
@@ -56,10 +57,6 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Header
-            handleSearchClick={ this.handleSearchClick }
-            handleChange={ this.handleChange }
-          />
           <Route
             exact
             path="/"
@@ -68,13 +65,33 @@ class App extends Component {
                 { ...props }
                 selectCategory={ this.selectCategory }
                 categories={ categories }
-              />) }
+                handleSearchClick={ this.handleSearchClick }
+                handleChange={ this.handleChange }
+              />
+            ) }
           />
-          <Route path="/cart" component={ Cart } />
+          <Route
+            path="/cart"
+            render={ (props) => (
+              <Cart
+                { ...props }
+                productList={ productList }
+                handleSearchClick={ this.handleSearchClick }
+                handleChange={ this.handleChange }
+              />
+            ) }
+          />
           <Route
             path="/products"
             render={ (props) => (
-              <Products { ...props } productList={ productList } />
+              <Products
+                { ...props }
+                productList={ productList }
+                handleSearchClick={ this.handleSearchClick }
+                handleChange={ this.handleChange }
+                categories={ categories }
+                selectCategory={ this.selectCategory }
+              />
             ) }
           />
         </Router>

@@ -1,35 +1,28 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Categories from '../components/Categories';
+import Header from '../components/Header';
 
 class Home extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      clicked: false,
-    };
-  }
-
   handleClick = ({ target }) => {
-    const { selectCategory } = this.props;
+    const { selectCategory, history } = this.props;
     selectCategory(target);
-    this.setState({
-      clicked: true,
-    });
-  }
+    history.push('/products');
+  };
 
   render() {
-    const { categories } = this.props;
-    const { clicked } = this.state;
+    const { categories, handleChange, handleSearchClick, history } = this.props;
     return (
       <>
+        <Header
+          handleChange={ handleChange }
+          handleSearchClick={ handleSearchClick }
+          history={ history }
+        />
         <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h2>
         <Categories handleClick={ this.handleClick } categories={ categories } />
-        {clicked && <Redirect to="/products" />}
       </>
     );
   }
@@ -42,6 +35,11 @@ Home.propTypes = {
       name: PropTypes.string,
     }),
   ).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSearchClick: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
   selectCategory: PropTypes.func.isRequired,
 };
 
