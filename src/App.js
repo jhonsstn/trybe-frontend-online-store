@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import Product from './pages/Product';
 import {
   getCategories,
   getProductsFromCategory,
@@ -91,6 +92,17 @@ class App extends Component {
                 handleChange={ this.handleChange }
                 categories={ categories }
                 selectCategory={ this.selectCategory }
+              />
+            ) }
+          />
+
+          <Route
+            path="/product/:id"
+            render={ (props) => (
+              <Product
+                { ...props }
+                handleSearchClick={ this.handleSearchClick }
+                handleChange={ this.handleChange }
               />
             ) }
           />
