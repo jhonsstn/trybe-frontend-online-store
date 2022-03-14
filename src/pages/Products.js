@@ -29,7 +29,12 @@ class Products extends Component {
         <Categories handleClick={ this.handleClick } categories={ categories } />
         {productList.length > 0 ? (
           productList.map((product) => (
-            <ProductCard key={ product.id } product={ product } />
+            <ProductCard
+              key={ product.id }
+              product={ product }
+              history={ history }
+              id={ product.id }
+            />
           ))
         ) : (
           <p>Nenhum produto foi encontrado!</p>

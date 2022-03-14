@@ -14,7 +14,6 @@ class Categories extends Component {
             category={ category }
           />
         ))}
-        ;
       </aside>
     );
   }
