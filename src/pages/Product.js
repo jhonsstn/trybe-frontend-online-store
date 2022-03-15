@@ -26,9 +26,9 @@ class Product extends Component {
   }
 
   render() {
-    const { handleChange, handleSearchClick, history } = this.props;
+    const { handleChange, handleSearchClick, history, handleCart } = this.props;
     const {
-      product: { title, thumbnail, price, attributes },
+      product: { title, thumbnail, price, attributes, id },
     } = this.state;
     return (
       <>
@@ -47,6 +47,13 @@ class Product extends Component {
                 <Attribute key={ attribute.id } attribute={ attribute } />
               ))}
             </ul>
+            <button
+              type="button"
+              data-testid="product-detail-add-to-cart"
+              onClick={ () => handleCart(id) }
+            >
+              Adicionar ao carrinho
+            </button>
           </div>
         </div>
       </>
@@ -65,6 +72,7 @@ Product.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  handleCart: PropTypes.func.isRequired,
 };
 
 export default Product;

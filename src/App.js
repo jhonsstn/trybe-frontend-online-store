@@ -5,6 +5,7 @@ import Cart from './pages/Cart';
 import Product from './pages/Product';
 import {
   getCategories,
+  getProductsById,
   getProductsFromCategory,
   getProductsFromQuery,
 } from './services/api';
@@ -20,6 +21,7 @@ class App extends Component {
       categories: [],
       product: '',
       productList: [],
+      cart: [],
     };
   }
 
@@ -53,8 +55,17 @@ class App extends Component {
     });
   };
 
+  handleCart = async (id) => {
+    const product = await getProductsById(id);
+    this.setState((prevState) => (
+      {
+        cart: [...prevState.cart, product],
+      }
+    ));
+  }
+
   render() {
-    const { categories, productList } = this.state;
+    const { categories, productList, cart } = this.state;
     return (
       <div className="App">
         <Router>
@@ -79,6 +90,7 @@ class App extends Component {
                 productList={ productList }
                 handleSearchClick={ this.handleSearchClick }
                 handleChange={ this.handleChange }
+                cart={ cart }
               />
             ) }
           />
@@ -103,6 +115,7 @@ class App extends Component {
                 { ...props }
                 handleSearchClick={ this.handleSearchClick }
                 handleChange={ this.handleChange }
+                handleCart={ this.handleCart }
               />
             ) }
           />
