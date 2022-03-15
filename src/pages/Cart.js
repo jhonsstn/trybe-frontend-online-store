@@ -18,7 +18,7 @@ class Cart extends Component {
         { cart.map((product) => (
           <div key={ product.id }>
             <p data-testid="shopping-cart-product-name">{ product.title }</p>
-            {/* Lembrar de alterar um para quantidade dinâmica Requisito.10 */}
+            {/* Lembrar de alterar o numero "1" para quantidade dinâmica citada no Requisito 10 */}
             <p data-testid="shopping-cart-product-quantity">1</p>
           </div>
         ))}
