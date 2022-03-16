@@ -15,10 +15,10 @@ class Cart extends Component {
         <h2 data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
         </h2>
-        { cart.map((product) => (
+        {cart.map((product) => (
           <div key={ product.id }>
-            <p data-testid="shopping-cart-product-name">{ product.title }</p>
-            {/* Lembrar de alterar o numero "1" para quantidade dinâmica citada no Requisito 10 */}
+            <p data-testid="shopping-cart-product-name">{product.title}</p>
+            {/* alterar o numero "1" para quantidade dinâmica citada no Requisito 10 */}
             <p data-testid="shopping-cart-product-quantity">1</p>
           </div>
         ))}
