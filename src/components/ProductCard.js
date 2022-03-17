@@ -17,7 +17,7 @@ class ProductCard extends Component {
       <div data-testid="product">
         <img src={ thumbnail } alt={ title } />
         <h3>{title}</h3>
-        <span>{price}</span>
+        <span>{`R$${price}`}</span>
         <button
           data-testid="product-detail-link"
           type="button"
