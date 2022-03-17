@@ -18,6 +18,7 @@ class Products extends Component {
       handleSearchClick,
       history,
       categories,
+      handleCart,
     } = this.props;
     return (
       <>
@@ -34,6 +35,7 @@ class Products extends Component {
               product={ product }
               history={ history }
               id={ product.id }
+              handleCart={ handleCart }
             />
           ))
         ) : (
@@ -63,6 +65,7 @@ Products.propTypes = {
     }),
   ).isRequired,
   selectCategory: PropTypes.func.isRequired,
+  handleCart: PropTypes.func.isRequired,
 };
 
 export default Products;

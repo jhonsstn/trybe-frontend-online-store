@@ -10,6 +10,8 @@ class ProductCard extends Component {
   render() {
     const {
       product: { title, price, thumbnail },
+      handleCart,
+      id,
     } = this.props;
     return (
       <div data-testid="product">
@@ -22,6 +24,13 @@ class ProductCard extends Component {
           onClick={ this.handleClick }
         >
           Detalhes
+        </button>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => handleCart(id) }
+        >
+          Adicionar ao Carrinho
         </button>
       </div>
     );
@@ -38,6 +47,7 @@ ProductCard.propTypes = {
     price: PropTypes.number,
     thumbnail: PropTypes.string,
   }).isRequired,
+  handleCart: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
