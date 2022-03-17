@@ -57,12 +57,10 @@ class App extends Component {
 
   handleCart = async (id) => {
     const product = await getProductsById(id);
-    this.setState((prevState) => (
-      {
-        cart: [...prevState.cart, product],
-      }
-    ));
-  }
+    this.setState((prevState) => ({
+      cart: [...prevState.cart, product],
+    }));
+  };
 
   render() {
     const { categories, productList, cart } = this.state;
@@ -102,6 +100,7 @@ class App extends Component {
                 productList={ productList }
                 handleSearchClick={ this.handleSearchClick }
                 handleChange={ this.handleChange }
+                handleCart={ this.handleCart }
                 categories={ categories }
                 selectCategory={ this.selectCategory }
               />
